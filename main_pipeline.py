@@ -18,17 +18,21 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+from dataclasses import asdict
 
 # --- Módulos do projeto
 from core.model_config  import NARXModelConfig
 from core.narx_engine   import NARXEngine, compute_gain
 from ga.genetic_algorithm import PALinearizationGA, GAConfig
+from core.model_io import save_model_json, save_model_txt, save_model_npz, verify_roundtrip
 from visualization.plots  import (
     plot_constellation,
     plot_am_am_pm,
     plot_ga_convergence,
     plot_full_dashboard,
 )
+
+
 
 # --- Utilitário de Diretórios
 def create_run_directory(base_dir: str = "./output", prefix: str = "output") -> Path:
@@ -247,6 +251,30 @@ def run_pipeline(
     print(f"   RMSE otimizado : {rmse_opt:.6f}  (redução: {rmse_seed - rmse_opt:.6f})")
     print(f"   NMSE otimizado : {nmse_opt:.2f} dB")
     print(f"   Ganho linear   : {best_config.gain_linear_dB:.2f} dB")
+
+    # ── Salvar modelo otimizado ───────────────────────────────
+    print("\nSalvando modelo otimizado...")
+
+    metadata = {
+        "rmse_seed": float(rmse_seed),
+        "rmse_opt": float(rmse_opt),
+        "nmse_opt_dB": float(nmse_opt),
+        "gain_linear_dB": float(best_config.gain_linear_dB),
+        "ga_config": asdict(ga_config),  # todos os hiperparâmetros do GA
+        "random_seed": ga_config.random_seed,
+        "n_samples": int(len(X)),
+        "dataset": str(csv_path),
+        "n_generations": int(n_generations),
+    }
+
+    json_path = out / "modelo_otimizado.json"
+    save_model_json(best_config, json_path, metadata=metadata)
+    save_model_txt(best_config, out / "modelo_otimizado.txt")
+    save_model_npz(best_config, out / "modelo_otimizado.npz")
+    print(f"   JSON: {json_path}")
+
+    # Confere que o arquivo salvo reproduz o RMSE em memória
+    verify_roundtrip(best_config, X, Y_true, json_path)
 
     # 5 - Ganho linearizado G[n]
     G_linearized = compute_gain(X, Y_pred_opt)

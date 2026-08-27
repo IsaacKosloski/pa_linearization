@@ -1,0 +1,85 @@
+{
+  "format_version": 1,
+  "saved_at_utc": "2026-08-27T06:26:27.391177+00:00",
+  "environment": {
+    "python": "3.14.4",
+    "numpy": "2.5.2"
+  },
+  "metadata": {
+    "rmse_seed": 0.7525138324145998,
+    "rmse_opt": 0.7524861275333891,
+    "nmse_opt_dB": -27.76406746148384,
+    "gain_linear_dB": 27.40668680874105,
+    "ga_config": {
+      "population_size": 80,
+      "n_generations": 200,
+      "crossover_prob": 0.7,
+      "mutation_prob": 0.2,
+      "mutation_sigma_rel": 0.05,
+      "tournament_size": 3,
+      "n_elites": 2,
+      "random_seed": 42,
+      "init_perturbation": 0.1
+    },
+    "random_seed": 42,
+    "n_samples": 48384,
+    "dataset": "datasets/dadosIniciais.csv",
+    "n_generations": 200
+  },
+  "model": {
+    "intercepts": {
+      "Yreal": -0.00053,
+      "Yimg": 6.3e-05
+    },
+    "A1": {
+      "Yreal_to_Yreal": 2.8678e-06,
+      "Yimg_to_Yreal": -3.5027e-06,
+      "Yreal_to_Yimg": 4.1053e-06,
+      "Yimg_to_Yimg": -4.52185e-05
+    },
+    "A2": {
+      "Yreal_to_Yreal": -1.15606e-05,
+      "Yimg_to_Yreal": -1.31692e-05,
+      "Yreal_to_Yimg": 3.04813e-05,
+      "Yimg_to_Yimg": -2.03335e-05
+    },
+    "betas": {
+      "Xreal_Yreal": 23.454968987517486,
+      "Ximg_Yreal": -1.4670244383558078,
+      "Xreal_lag1_Yreal": 0.0006576360659755537,
+      "Ximg_lag1_Yreal": -0.0020095796001607146,
+      "Xreal_lag2_Yreal": -0.001080773933504524,
+      "Ximg_lag2_Yreal": -0.0036648694150189054,
+      "Xreal_deg2_Yreal": -0.001531384347404588,
+      "Xreal_lag1_deg2_Yreal": 0.004711588040722041,
+      "Xreal_lag2_deg2_Yreal": -0.004609864948169676,
+      "Ximg_deg2_Yreal": -0.008257783596735506,
+      "Ximg_lag1_deg2_Yreal": 0.0007806238897998597,
+      "Ximg_lag2_deg2_Yreal": -0.004339976153989479,
+      "Xreal_deg3_Yreal": -0.46336188011650625,
+      "Xreal_lag1_deg3_Yreal": -0.0018955726267410645,
+      "Xreal_lag2_deg3_Yreal": 0.0034228799485677133,
+      "Ximg_deg3_Yreal": 2.041663125989731,
+      "Ximg_lag1_deg3_Yreal": 0.0060235527172980245,
+      "Ximg_lag2_deg3_Yreal": 0.005205226223776496,
+      "Xreal_Yimg": 1.476618804856268,
+      "Ximg_Yimg": 23.465715180646164,
+      "Xreal_lag1_Yimg": 0.003970834388731898,
+      "Ximg_lag1_Yimg": 0.007433468716005081,
+      "Xreal_lag2_Yimg": -0.00013799252344864275,
+      "Ximg_lag2_Yimg": -0.0018690016573216818,
+      "Xreal_deg2_Yimg": 0.00209131375993743,
+      "Xreal_lag1_deg2_Yimg": -0.0032976867725804638,
+      "Xreal_lag2_deg2_Yimg": -0.004882293504299893,
+      "Ximg_deg2_Yimg": 0.003843785300563793,
+      "Ximg_lag1_deg2_Yimg": -0.0007668962429100243,
+      "Ximg_lag2_deg2_Yimg": -0.0003716975685024152,
+      "Xreal_deg3_Yimg": -2.0428026198268165,
+      "Xreal_lag1_deg3_Yimg": -0.006027699137512421,
+      "Xreal_lag2_deg3_Yimg": -0.002939562635609247,
+      "Ximg_deg3_Yimg": -0.473075248521361,
+      "Ximg_lag1_deg3_Yimg": -0.006409648298371425,
+      "Ximg_lag2_deg3_Yimg": 0.0034134581454095506
+    }
+  }
+}
